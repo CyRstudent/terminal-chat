@@ -51,7 +51,7 @@ export class Client {
 	sendMessage(content: string): void {
 		const payload: Message = {
 			content: content,
-			sender: this.name,
+			sender: this,
 			date: new Date(),
 		};
 		this.ws.send(JSON.stringify(payload));

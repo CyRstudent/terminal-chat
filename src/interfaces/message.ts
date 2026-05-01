@@ -1,5 +1,7 @@
+import type { Client } from "../client/Client.js";
+
 export interface Message {
-	sender: string,
+	sender: Client,
 	content: string,
 	date: Date
 }
