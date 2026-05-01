@@ -1,26 +1,18 @@
-import WebSocket from 'ws';
-import * as readline from 'node:readline';
+import { Client } from './client/Client.js';
 import {default as config} from '../config.json' with {type: 'json'};
+import * as readline from 'node:readline/promises'
 
-const ws = new WebSocket(`ws://localhost:${config.port}`);
-const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout
-});
 
-ws.on('open', () => {
-	console.log('Welcome to the chat!')
-	rl.on('line', (input) => {
-		ws.send(input);
-		console.log(`\nYou: ${input}`);
-	})
-});
+async function main() {
+	const rl = readline.createInterface({
+		input: process.stdin,
+		output: process.stdout,
+	});
+	let username = await rl.question('Enter here your username: ');
+	rl.close();
 
-ws.on('message', (data) => {
-	console.log(`Someone: ${data}`);
-})
+	const client = new Client(config.port, username);
+	client.start();
+}
 
-ws.on('close', () => {
-	console.log('Connection closed. Try again');
-	process.exit(0);
-})
+main();
