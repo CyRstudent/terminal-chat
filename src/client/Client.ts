@@ -32,7 +32,8 @@ export class Client {
 			try {
 				const incoming = JSON.parse(data.toString()) as Message;
 				process.stdout.write('\r\x1b[K');
-				console.log(`\n[${incoming.sender} at ${incoming.date.toTimeString()}]: ${incoming.content}`)
+				const msgTime = new Date(incoming.date).toLocaleTimeString();
+				console.log(`\n[${incoming.sender} at ${msgTime}]: ${incoming.content}`)
 				this.promptInput();
 			} catch(err) {
 				console.error(new Error('Failed to parse incoming message'));
@@ -43,7 +44,7 @@ export class Client {
 			process.exit(0);
 		});
 		this.rl.on('SIGINT', () => {
-			process.exit(0);
+			this.ws.close();
 		});
 	}
 
