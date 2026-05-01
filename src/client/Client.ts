@@ -26,6 +26,7 @@ export class Client {
 	start(): void {
 		this.ws.on('open', () => {
 			console.log('Ready');
+			this.promptInput();
 		})
 		this.ws.on('message', (data: WebSocket.RawData) => {
 			try {
