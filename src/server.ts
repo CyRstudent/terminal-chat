@@ -1,5 +1,4 @@
 import * as WebSocket from 'ws';
-import * as readline from 'node:readline';
 import { default as config } from '../config.json' with { type: 'json' };
 
 const wss = new WebSocket.WebSocketServer({

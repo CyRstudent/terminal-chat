@@ -7,11 +7,11 @@ async function main() {
 		input: process.stdin,
 		output: process.stdout,
 	});
-	let username = await rl.question('Enter here your username: ');
+	const username = await rl.question('Enter here your username: ');
 	rl.close();
 
 	const client = new Client(config.port, username);
 	client.start();
 }
 
-main();
+void main();
