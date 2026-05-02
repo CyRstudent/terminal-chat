@@ -1,31 +1,40 @@
 {
-  "name": "terminal-chat",
-  "version": "1.0.0",
-  "description": "A WebSocket-based terminal room chat",
-  "main": "./src/index.ts",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc",
-    "server": "node dist/server.js",
-    "client": "node dist/client.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/CyRstudent/terminal-chat.git"
-  },
-  "author": "Hugo S.",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CyRstudent/terminal-chat/issues"
-  },
-  "homepage": "https://github.com/CyRstudent/terminal-chat#readme",
-  "dependencies": {
-    "ws": "^8.20.0"
-  },
-  "devDependencies": {
-    "@types/node": "^25.6.0",
-    "@types/ws": "^8.18.1",
-    "typescript": "^6.0.3"
-  }
+	"name": "terminal-chat",
+	"version": "1.0.0",
+	"description": "A WebSocket-based terminal room chat",
+	"main": "./src/index.ts",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "npx tsc",
+		"server": "node dist/server.js",
+		"client": "node dist/client.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/CyRstudent/terminal-chat.git"
+	},
+	"author": "Hugo S.",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/CyRstudent/terminal-chat/issues"
+	},
+	"homepage": "https://github.com/CyRstudent/terminal-chat#readme",
+	"dependencies": {
+		"jiti": "^2.6.1",
+		"ws": "^8.20.0"
+	},
+	"devDependencies": {
+		"@types/node": "^25.6.0",
+		"@types/ws": "^8.18.1",
+		"@typescript-eslint/eslint-plugin": "^8.59.1",
+		"@typescript-eslint/parser": "^8.59.1",
+		"eslint": "^10.3.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-prettier": "^5.5.5",
+		"globals": "^17.6.0",
+		"prettier": "^3.8.3",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.59.1"
+	}
 }
