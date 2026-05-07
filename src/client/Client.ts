@@ -1,6 +1,9 @@
 import WebSocket from 'ws';
 import * as readline from 'node:readline';
 import { type Message } from '../interfaces/message.js';
+import type { WsEvent } from '../interfaces/WsEvent.js';
+import { readdirSync } from 'node:fs';
+
 export class Client {
 	private ws: WebSocket;
 	private rl: readline.Interface;
@@ -23,7 +26,23 @@ export class Client {
 			this.promptInput();
 		});
 	}
-	start(): void {
+	async start(): Promise<void> {
+		// Event handling
+		const eventFiles: string[] = readdirSync('./src/client/events');
+		for (const file of eventFiles) {
+			const module = await import(`./events/${file.replace('ts', 'js')}`);
+			const item: WsEvent = module.default;
+			if (item.once) {
+				this.ws.once(item.event.toString(), (...args: unknown[]) => {
+					item.execute(args, this);
+				});
+			} else {
+				this.ws.on(item.event.toString(), (...args: unknown[]) => {
+					item.execute(args, this);
+				});
+			}
+		}
+
 		this.ws.on('open', () => {
 			console.log('Ready');
 			this.promptInput();
