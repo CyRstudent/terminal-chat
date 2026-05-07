@@ -20,7 +20,7 @@ export class Client {
 		this.name = name;
 	}
 
-	private promptInput(): void {
+	public promptInput(): void {
 		this.rl.question('You: ', (ans) => {
 			this.sendMessage(ans);
 			this.promptInput();
