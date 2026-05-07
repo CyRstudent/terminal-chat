@@ -42,28 +42,6 @@ export class Client {
 				});
 			}
 		}
-
-		this.ws.on('open', () => {
-			console.log('Ready');
-			this.promptInput();
-		});
-		this.ws.on('message', (data: WebSocket.RawData) => {
-			try {
-				const incoming = JSON.parse(data.toString()) as Message;
-				process.stdout.write('\r\x1b[K');
-				const msgTime = new Date(incoming.date).toLocaleTimeString();
-				console.log(
-					`\n[${incoming.sender} at ${msgTime}]: ${incoming.content}`,
-				);
-				this.promptInput();
-			} catch {
-				console.error(new Error('Failed to parse incoming message'));
-			}
-		});
-		this.ws.on('close', () => {
-			console.log('Disconnected from the server');
-			process.exit(0);
-		});
 		this.rl.on('SIGINT', () => {
 			this.ws.close();
 		});
